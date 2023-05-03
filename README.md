@@ -66,18 +66,18 @@ By analyzing the out-of-distribution data of the test set, ' Weather ' is better
 
 Analyze the out-of-distribution data of the test set, which contains ' Context ' out-of-distribution interference, and consider that style transfer can be used to generate. However, because the use of data sets is limited, we cannot use general style transfer based on deep learning. After further investigation, because the OOD test set contains more data with large differences between the color style and the conventional color style of the object ( for example, the aircraft under water ), it was decided to use the traditional color transfer method. 
 
-This is a traditional image processing method that does not require data-driven, and can mix the color style information of one picture with the content information of another picture. Firstly, in order to facilitate image processing and remove the correlation between image components, the image is converted from $RGB$ color space to $ L\alpha\beta $ color space. After the color transfer in the $ L\alpha\beta $ space, the image is converted back to the $RGB$ color space image.
+This is a traditional image processing method that does not require data-driven, and can mix the color style information of one picture with the content information of another picture. Firstly, in order to facilitate image processing and remove the correlation between image components, the image is converted from $RGB$ color space to $L\alpha\beta$ color space. After the color transfer in the $L\alpha\beta$ space, the image is converted back to the $RGB$ color space image.
 
 - Convert $RGB$ space to $LMS$ space
 
 $$
-\begin{bmatrix} L \\ M \\ S \end{bmatrix} =log\begin{Bmatrix} \begin{bmatrix} 0.5141&0.3239&0.1604 \\ 0.2651&0.6702&0.0641 \\ 0.0241&0.1228&0.8444 \end{bmatrix} \begin{bmatrix} R \\ G \\ B \end{bmatrix} \end{Bmatrix}
+\begin{bmatrix} L \\\ M \\\ S \end{bmatrix} =log\begin{Bmatrix} \begin{bmatrix} 0.5141&0.3239&0.1604 \\\ 0.2651&0.6702&0.0641 \\\ 0.0241&0.1228&0.8444 \end{bmatrix} \begin{bmatrix} R \\\ G \\\ B \end{bmatrix} \end{Bmatrix}
 $$
 
 -  Convert $LMS$ space to $L\alpha\beta$ space.
 
 $$
-\begin{bmatrix} L \\ \alpha \\ \beta \end{bmatrix} = \begin{bmatrix} \frac{1}{\sqrt{3}} & 0 & 0  \\  0 & \frac{1}{\sqrt{6}} & 0  \\  0 & 0 & \frac{1}{\sqrt{2}}  \end{bmatrix} \begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & -2 \\ 1 & -1 & 0 \end{bmatrix}  \begin{bmatrix} L \\ M \\ S \end{bmatrix}
+\begin{bmatrix} L \\\ \alpha \\\ \beta \end{bmatrix} = \begin{bmatrix} \frac{1}{\sqrt{3}} & 0 & 0  \\\  0 & \frac{1}{\sqrt{6}} & 0  \\\  0 & 0 & \frac{1}{\sqrt{2}}  \end{bmatrix} \begin{bmatrix} 1 & 1 & 1 \\\ 1 & 1 & -2 \\\ 1 & -1 & 0 \end{bmatrix}  \begin{bmatrix} L \\\ M \\\ S \end{bmatrix}
 $$
 
 ### 1.4 Semi-supervised learning : Pseudo-Label method
